@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>IMDB movie list</h1>
+{% for movie in movies %}
+
+    <p> Movie - {{ movie.title }} </p>
+    <p> Rating - {{ movie.rating }} </p>
+    <p> Year - {{ movie.year }} </p>
+    <p> Cast - {{ movie.actors.all|join:", " }} </p>
+    <p> Director - {{ movie.directors.all|join:", " }} </p>
+    <p> Genre - {{ movie.genres.all|join:", " }} </p>
+
+
+<!--    <h2>
+      <a href="{{ movie.get_absolute_url }}">
+        {{ movie.title }}
+      </a>
+    </h2>
+    <p class="date">
+      Released in {{ movie.year }} and directed by <a href="{{ movie.director.get_absolute_url }}">
+        {{ movie.directors }}
+      </a>
+    </p> -->
+{% empty %}
+    <p>
+      There are no movies in the DB yet.
+    </p>
+{% endfor %}
+{% endblock %}

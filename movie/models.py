@@ -4,11 +4,8 @@ from actor.models import Actor
 from director.models import Director
 
 
-# Create your models here.
-
 class Genres(models.Model):
     name = models.CharField(max_length=50)
-
 
     def __str__(self):
         return self.name
@@ -28,7 +25,6 @@ class Movie(models.Model):
     rating = models.IntegerField(default=0, choices=SCORE)
     actors = models.ManyToManyField(Actor, blank=True)
     directors = models.ManyToManyField(Director, blank=True)
-
 
     def __str__(self):
         return self.title
