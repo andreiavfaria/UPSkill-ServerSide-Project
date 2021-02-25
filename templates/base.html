@@ -1,3 +1,4 @@
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -5,8 +6,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}IMDb{% endblock %}</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
 </head>
 <body>
+    <div class="nav">
+         <div class="link"><a href="">Homepage</a></div>
+         <div class="link"><a href="">Movies</a></div>
+         <div class="link" id="about"><a href="">About</a></div>
+    </div>
 {% block content %}{% endblock %}
 </body>
 </html>

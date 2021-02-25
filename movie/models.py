@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from actor.models import Actor
 from director.models import Director
+from django.urls import reverse
 
 
 class Genres(models.Model):
@@ -29,5 +30,10 @@ class Movie(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('movie:movie_detail',
+                       args=[self.id])
+
     class Meta:
         pass
+

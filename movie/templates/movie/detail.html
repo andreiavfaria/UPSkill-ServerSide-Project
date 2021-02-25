@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <p>year - {{ movie.year }}</p>
+    <p>slug - {{ movie.slug }}</p>
+    <p>rating - {{ movie.rating }}</p>
+    <p>atores - {{ movie.actors.all|join:", " }}</p>
+    <p>diretores - {{ movie.directors.all|join:", " }}</p>
+    <p>genres - {{ movie.genres.all|join:", " }}</p>
+
+{% endblock %}

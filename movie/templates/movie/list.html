@@ -1,18 +1,23 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<h1>IMDB movie list</h1>
-{% for movie in movies %}
+    <h1>IMDB movie list</h1>
+    {% for movie in movies %}
 
-    <p> Movie - {{ movie.title }} </p>
-    <p> Rating - {{ movie.rating }} </p>
+<p> Movie - <a href="{{ movie.get_absolute_url }}"> {{ movie }}</a> </p>
+
+
+
+
+<!--    <p> Rating - {{ movie.rating }} </p>
     <p> Year - {{ movie.year }} </p>
     <p> Cast - {{ movie.actors.all|join:", " }} </p>
     <p> Director - {{ movie.directors.all|join:", " }} </p>
     <p> Genre - {{ movie.genres.all|join:", " }} </p>
 
 
-<!--    <h2>
+    <h2>
       <a href="{{ movie.get_absolute_url }}">
         {{ movie.title }}
       </a>
@@ -22,9 +27,9 @@
         {{ movie.directors }}
       </a>
     </p> -->
-{% empty %}
-    <p>
-      There are no movies in the DB yet.
-    </p>
-{% endfor %}
-{% endblock %}
+    {% empty %}
+        <p>
+          There are no movies in the DB yet.
+        </p>
+    {% endfor %}
+    {% endblock %}

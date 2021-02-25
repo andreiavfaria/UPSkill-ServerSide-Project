@@ -20,5 +20,6 @@ from django.urls import path
 app_name = 'movie'
 
 urlpatterns = [
-    path('', views.movie_list, name='movie_list')
+    path('', views.movie_list, name='movie_list'),
+    path('movies/<int:id>/', views.movie_detail, name='movie_detail'),
 ]
