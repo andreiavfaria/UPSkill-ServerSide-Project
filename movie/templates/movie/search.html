@@ -1,0 +1,18 @@
+{% extends "movie/list.html" %}
+
+{% block title %}Search results for IMDB movies{% endblock %}
+
+{% block content %}
+  <h2>Search results:</h2>
+  {% for movie in results %}
+    <h2>
+      <a href="{{ movie.get_absolute_url }}">
+        {{ movie.title }}
+      </a>
+    </h2>
+  {% empty %} <!-- se não tiver resultado mostra o 'No matching movies were found.' -->
+    <p>
+      No matching movies were found.
+    </p>
+  {% endfor %}
+{% endblock %}

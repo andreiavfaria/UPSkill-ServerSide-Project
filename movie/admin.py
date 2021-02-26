@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Movie, Genres
 
 # Register your models here.
+# formulario
 
 admin.site.register(Genres)
 

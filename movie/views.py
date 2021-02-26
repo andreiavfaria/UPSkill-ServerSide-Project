@@ -19,3 +19,15 @@ def movie_detail(request, id):
     return render(request,
                   'movie/detail.html',
                   {'movie': movie})
+
+
+def movie_search(request):
+    search_string = request.GET.get("query")
+    if search_string:
+        results = Movie.objects.filter(title__contains=search_string)
+    else:
+        results = None
+
+    return render(request,
+                 'movie/search.html',
+                 {'results': results})

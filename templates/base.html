@@ -9,11 +9,20 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
 </head>
 <body>
-    <div class="nav">
-         <div class="link"><a href="">Homepage</a></div>
-         <div class="link"><a href="">Movies</a></div>
-         <div class="link" id="about"><a href="">About</a></div>
-    </div>
-{% block content %}{% endblock %}
+<div class="nav">
+    <div class="link"><a href="">Homepage</a></div>
+    <div class="link"><a href="">Movies</a></div>
+    <form method="get" action="{% url 'movie:movie_search' %}" accept-charset="UTF-8">
+        {{ search_form.as_p }}
+        <!-- <input type="text" placeholder="Search..."/>
+        <button type="submit" value="Submit">
+            <i class="fa fa-search"></i>
+        </button> -->
+    </form>
+
+    <div class="link" id="about"><a href="">About</a></div>
+</div>
+{% block content %}
+{% endblock %}
 </body>
 </html>
