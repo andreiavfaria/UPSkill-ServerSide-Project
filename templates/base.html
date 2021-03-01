@@ -11,7 +11,7 @@
 <body>
 <div class="nav">
     <div class="link"><a href="">Homepage</a></div>
-    <div class="link"><a href="">Movies</a></div>
+    <div class="link"><a href="{% url 'movie:movie_list' %}">Movies</a></div>
     <form method="get" action="{% url 'movie:movie_search' %}" accept-charset="UTF-8">
         {{ search_form.as_p }}
         <!-- <input type="text" placeholder="Search..."/>
@@ -19,6 +19,16 @@
             <i class="fa fa-search"></i>
         </button> -->
     </form>
+    <div id="sidebar">
+    {% if request.user.is_authenticated %}
+        <h3>
+          Welcome, {{ request.user.username }}!
+        </h3>
+        <a href="{% url "accounts:logout" %}">Log-out</a>
+    {% else %}
+      <a href="{% url "accounts:login" %}">Log-in</a>
+    {% endif %}
+  </div>
 
     <div class="link" id="about"><a href="">About</a></div>
 </div>
