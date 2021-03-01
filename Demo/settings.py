@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,8 +42,6 @@ INSTALLED_APPS = [
     'director',
     'movie',
     'review',
-    'user',
-    'accounts',
     'homepage',
 ]
 
@@ -122,10 +121,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGIN_REDIRECT_URL = 'homepage:homepage'
+# LOGOUT_REDIRECT_URL = 'accounts:'
+# tem de corresponder ao namespace do urls
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
 # quando a pasta está na root do projecto, temos de acrescentar isto
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)

@@ -1,5 +1,6 @@
 
 from django.contrib.auth import authenticate, get_user_model, login
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
@@ -19,7 +20,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authenticated '\
+                    return HttpResponse('Authenticated'\
                                         'successfully')
                 else:
                     return HttpResponse('Disabled account')

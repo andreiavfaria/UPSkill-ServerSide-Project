@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:accounts="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="nav">
-    <div class="link"><a href="">Homepage</a></div>
+    <div class="link"><a href="{% url 'homepage:homepage' %}">Homepage</a></div>
     <div class="link"><a href="{% url 'movie:movie_list' %}">Movies</a></div>
     <form method="get" action="{% url 'movie:movie_search' %}" accept-charset="UTF-8">
         {{ search_form.as_p }}
@@ -19,17 +19,12 @@
             <i class="fa fa-search"></i>
         </button> -->
     </form>
-    <div id="sidebar">
     {% if request.user.is_authenticated %}
-        <h3>
-          Welcome, {{ request.user.username }}!
-        </h3>
-        <a href="{% url "accounts:logout" %}">Log-out</a>
+    <div class="link"><a href="{% url 'accounts:profile' profile_id=request.user.profile.id %}">Profile</a></div>
+    <div class="link"><a href="{% url 'accounts:logout' %}">Log-out</a></div>
     {% else %}
-      <a href="{% url "accounts:login" %}">Log-in</a>
+    <div class="link"><a href="{% url 'accounts:login' %}">Log-in</a></div>
     {% endif %}
-  </div>
-
     <div class="link" id="about"><a href="">About</a></div>
 </div>
 {% block content %}
