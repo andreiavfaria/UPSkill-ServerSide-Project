@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'actor',
     'director',
     'movie',
-    'review',
     'homepage',
 ]
 

@@ -1,17 +1,32 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block content %}
-<body>
-    <br>
-    <img src="{{ movie.image.url }}" alt="{{ movie.name }}'s poster">
-    <p>year - {{ movie.year }}</p>
-    <p>slug - {{ movie.slug }}</p>
-    <p>rating - {{ movie.rating }}</p>
-    <p>atores - {{ movie.actors.all|join:", " }}</p>
-    <p>diretores - {{ movie.directors.all|join:", " }}</p>
-    <p>genres - {{ movie.genres.all|join:", " }}</p>
-</body>
+{% block content %} <!-- ó burra o block content já é um body -->
+
+<br>
+<img src="{{ movie.image.url }}" alt="{{ movie.name }}'s poster">
+<p>year - {{ movie.year }}</p>
+<p>slug - {{ movie.slug }}</p>
+<p>rating - {{ movie.get_score.score__avg }}</p>
+<p>atores - {{ movie.actors.all|join:", " }}</p>
+<p>diretores - {{ movie.directors.all|join:", " }}</p>
+<p>genres - {{ movie.genres.all|join:", " }}</p>
+
+{% for review in movie.reviews.all %}
+<div class="review">
+    <p class="info">
+        Review {{ forloop.counter }} by {{review.user}} {{review.created_date}}
+    </p>
+    <p>Score: {{review.score}}</p>
+    <p>Review: {{review.title}}</p>
+    {{ review.review|linebreaks }}
+</div>
+
+{% empty %}
+<p class="info">There are no reviews yet.</p>
+{% endfor %}
+
+
 {% endblock %}
 
 

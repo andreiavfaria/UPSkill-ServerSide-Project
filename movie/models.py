@@ -3,6 +3,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from actor.models import Actor
 from director.models import Director
+from django.db.models import Avg
 from django.urls import reverse
 from django.utils import timezone
 
@@ -29,10 +30,13 @@ class Movie(models.Model):
     actors = models.ManyToManyField(Actor, blank=True)
     directors = models.ManyToManyField(Director, blank=True)
 
+    def get_score(self):
+        return self.reviews.aggregate(Avg('score'))
+
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
+    def get_absolute_url(self): # isto é uma função mas como está dentro de uma classe é um método
         return reverse('movie:movie_detail',
                        args=[self.id])
 
@@ -47,4 +51,10 @@ class Review(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews') #user.reviews
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='reviews') #movie.reviews
-    review = models.TextField()
+    review = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ('created_date',)
