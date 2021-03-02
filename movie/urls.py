@@ -24,5 +24,6 @@ urlpatterns = [
     path('search/', views.movie_search, name='movie_search'),
     path('<int:id>/', views.movie_detail, name='movie_detail'),
     path('<int:movie_id>/review/', views.movie_review, name='movie_review'),
+    path('<int:movie_id>/review/edit', views.edit_review, name='movie_edit_review'),
 
 ]

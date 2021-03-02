@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Porra Luís!</h1>
+<h2>Porra Luís!</h2>
+
+
+<h1>Last visited:</h1>
+{% for movie in last_visited %}
+<p>
+    <a href="{{ movie.get_absolute_url }}" > {{ movie.title }}</a>
+</p>
+
+{% endfor %}
+
 {% endblock %}

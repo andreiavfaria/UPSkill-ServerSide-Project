@@ -57,4 +57,6 @@ class Review(models.Model):
         return self.title
 
     class Meta:
+        unique_together = (('movie', 'user',),)
         ordering = ('created_date',)
+

@@ -4,8 +4,17 @@
 
 {% block content %}
 
+{% if edit %}
+<h2>Edit review</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ review_form.as_p }}
+    <p>
+        <input type="submit" value="Edit review">
+    </p>
+</form>
+{% else %}
 <h2>Add new review</h2>
-
 <form method="POST">
     {% csrf_token %}
     {{ review_form.as_p }}
@@ -13,6 +22,6 @@
         <input type="submit" value="Add review">
     </p>
 </form>
-
+{% endif %}
 
 {% endblock %}
